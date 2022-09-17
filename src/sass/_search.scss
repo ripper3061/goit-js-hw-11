@@ -12,7 +12,7 @@
   display: block;
   padding: 12px;
   margin-bottom: 16px;
-  background-color: cornflowerblue;
+  background-color: #7dbaff;
   margin-bottom: 24px;
   z-index: 1;
 }
@@ -27,26 +27,25 @@
 
 input {
   &:not(placeholder) {
-    background-color: #ffffff;
+    background-color: #ffffe3;
   }
 
   min-width: 280px;
   height: 40px;
   margin-right: 10px;
-  padding: 15px 16px;
-  background-color: #2f303a;
+  padding: 15px 15px;
+  background-color: #ffffe3;
   border: 1px solid rgba(255, 255, 255, 0.3);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .search-btn,
 .load-more {
   height: 40px;
-  padding: 6px 22px;
-  border-radius: 4px;
+  padding: 5px 20px;
+  border-radius: 5px;
   border: none;
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -55,15 +54,15 @@ input {
   letter-spacing: 0.03em;
   text-align: center;
   color: #212121;
-  background-color: #f5f4fa;
+  background-color: #ffffe3;
   transition: color 250ms, cubic-bezier(0.4, 0, 0.2, 1),
     background-color var(--transition-duration)
       var(--transition-timing-function),
     box-shadow var(--transition-duration) var(--transition-timing-function);
 
   &:hover {
-    color: #ffffff;
-    background-color: #2196f3;
+    color: #1e6dff;
+    background-color: #f1ff58;
     box-shadow: 0px 3px 1px rgb(0 0 0 / 10%), 0px 1px 2px rgb(0 0 0 / 8%),
       0px 2px 2px rgb(0 0 0 / 12%);
   }
