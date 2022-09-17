@@ -84,6 +84,8 @@ input {
   width: 455px;
   height: 387px;
   overflow: hidden;
+  box-shadow: 3px 7px 5px 0px #0000001a, 0px 1px 2px #00000014,
+    0px 2px 2px #0000001f;
 }
 
 .gallery-link {
@@ -109,10 +111,14 @@ input {
   padding-bottom: 10px;
 }
 
-// .info-item {}
+.info-item-span {
+  display: flex;
+  justify-content: center;
+  font-weight: 200;
+}
 
 .info-item + .info-item {
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 .load-more-btn {

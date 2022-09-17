@@ -26,19 +26,41 @@ let simpleGalery = new SimpleLightbox('.gallery .gallery-link');
 const renderMarkup = arr => {
   const markup = arr
     .map(image => {
+      const {
+        largeImageURL,
+        webformatURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      } = image;
       return `<div class="photo-card">
-                    <a class="gallery-link" href="${image.largeImageURL}">
-                        <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" class="gallery-image"/>
+                    <a class="gallery-link" href="${largeImageURL}">
+                        <img src="${webformatURL}" alt="${tags}" loading="lazy" class="gallery-image"/>
                     </a>
                     <div class="info">
-                        <p class="info-item"><b>Likes</b>${image.likes}</p>
-                        <p class="info-item"><b>Views</b>${image.views}</p>
-                        <p class="info-item"><b>Comments</b>${image.comments}</p>
-                        <p class="info-item"><b>Downloads</b>${image.downloads}</p>
+                        <p class="info-item">
+                            <b>Likes</b>
+                            <span class="info-item-span">${likes}</span>
+                        </p>
+                        <p class="info-item">
+                            <b>Views</b>
+                            <span class="info-item-span">${views}</span>
+                        </p>
+                        <p class="info-item">
+                            <b>Comments</b>
+                            <span class="info-item-span">${comments}</span>
+                        </p>
+                        <p class="info-item">
+                            <b>Downloads</b>
+                            <span class="info-item-span">${downloads}</span>
+                        </p>
                     </div>
                 </div>`;
     })
     .join('');
+
   galleryList.insertAdjacentHTML('beforeend', markup);
 };
 
@@ -53,6 +75,7 @@ const searchPhoto = async event => {
   searchQuery = event.currentTarget.elements.searchQuery.value;
   page = 1;
   galleryList.innerHTML = '';
+
   if (searchQuery === '') {
     Notify.failure('Please enter something');
     return;
@@ -60,12 +83,14 @@ const searchPhoto = async event => {
 
   try {
     const { data } = await fetchArticles(searchQuery, page, perPage);
+
     if (!data.totalHits) {
       Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
       return;
     }
+
     Notify.success(`Hooray! We found ${data.totalHits} images.`);
     changePage(data.hits);
     loadMoreBtn.classList.toggle('is-hidden');
@@ -79,10 +104,12 @@ const loadMoreContent = async () => {
   try {
     const { data } = await fetchArticles(searchQuery, page, perPage);
     const PAGES = data.totalHits / perPage;
+
     if (page >= PAGES) {
       Notify.info("We're sorry, but you've reached the end of search results.");
       loadMoreBtn.classList.toggle('is-hidden');
     }
+
     changePage(data.hits);
   } catch (error) {
     console.log(error);
